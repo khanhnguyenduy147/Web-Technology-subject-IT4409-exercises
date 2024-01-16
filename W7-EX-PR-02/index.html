@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thông tin người dùng</title>
+</head>
+
+<body>
+    <h1>Thông tin người dùng</h1>
+    <div id="user-info"></div>
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(users => {
+                let userInfo = document.getElementById('user-info');
+                users.forEach(user => {
+                    userInfo.innerHTML += `
+                        <h2>${user.name} (${user.username})</h2>
+                        <p>Email: ${user.email}</p>
+                        <p>Phone: ${user.phone}</p>
+                        <p>Website: ${user.website}</p>
+                        <p>Address: ${user.address.street}, ${user.address.suite}, ${user.address.city}, ${user.address.zipcode}</p>
+                        <p>Geo: ${user.address.geo.lat}, ${user.address.geo.lng}</p>
+                        <p>Company: ${user.company.name}</p>
+                        <p>Catch Phrase: ${user.company.catchPhrase}</p>
+                        <p>BS: ${user.company.bs}</p>
+                        <hr>
+                    `;
+                });
+            });
+    </script>
+</body>
+
+</html>
